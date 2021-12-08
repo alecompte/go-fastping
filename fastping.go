@@ -170,6 +170,7 @@ func NewPinger() *Pinger {
 		OnRecv:  nil,
 		OnIdle:  nil,
 		Debug:   false,
+		IsRecv: true,
 	}
 }
 
