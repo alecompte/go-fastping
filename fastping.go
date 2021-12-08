@@ -150,6 +150,7 @@ type Pinger struct {
 	OnIdle func()
 	// If Debug is true, it prints debug messages to stdout.
 	Debug bool
+	IsRecv bool
 }
 
 // NewPinger returns a new Pinger struct pointer
@@ -573,7 +574,7 @@ func (p *Pinger) recvICMP(conn *icmp.PacketConn, recv chan<- *packet, ctx *conte
 			if neterr, ok := err.(*net.OpError); ok {
 				if neterr.Timeout() {
 					p.debugln("recvICMP(): Read Timeout")
-					p.isRecv = false
+					p.IsRecv = false
 					continue
 				} else {
 					p.debugln("recvICMP(): OpError happen", err)
